@@ -2,3 +2,8 @@ export * from './user';
 export * from './config';
 export * from './country';
 export * from './product';
+export * from './customer';
+export * from './inventory';
+export * from './order';
+export * from './order-detail';
+export * from './supplier';

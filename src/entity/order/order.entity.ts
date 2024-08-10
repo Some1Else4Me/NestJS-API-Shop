@@ -1,28 +1,33 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
-import { Customer } from './Customer';
-import { OrderDetail } from './OrderDetail';
-import { Payment } from './Payment';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, BaseEntity } from 'typeorm';
+import { Customer } from '../customer/customer.entity';
+import { OrderDetail } from '../order-detail/order-detail.entity';
 
 @Entity()
-export class Order {
+export class Order extends BaseEntity {
   @PrimaryGeneratedColumn()
-  order_id: number;
+  order_id!: number;
 
   @ManyToOne(() => Customer, (customer) => customer.orders)
-  customer: Customer;
+  customer!: Customer;
 
-  @Column()
-  order_date: Date;
+  @Column('date', {
+    nullable: false,
+    name: 'order_date',
+  })
+  order_date!: Date;
 
-  @Column('decimal')
-  total_amount: number;
+  @Column('decimal', {
+    nullable: false,
+    name: 'total_amount',
+  })
+  total_amount!: number;
 
-  @Column()
-  status: string;
+  @Column('varchar', {
+    nullable: false,
+    name: 'status',
+  })
+  status!: string;
 
   @OneToMany(() => OrderDetail, (orderDetail) => orderDetail.order)
-  orderDetails: OrderDetail[];
-
-  @OneToMany(() => Payment, (payment) => payment.order)
-  payments: Payment[];
+  orderDetails!: OrderDetail[];
 }

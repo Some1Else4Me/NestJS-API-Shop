@@ -27,6 +27,12 @@ export class User extends BaseEntity {
     name: 'email',
   })
   email!: string;
+  @Column('varchar', {
+    nullable: true,
+    length: 10,
+    name: 'phone',
+  })
+  phone!: number;
   @ManyToMany(() => Roles, (roles) => roles.users)
   @JoinTable({ name: 'user_roles' })
   roles!: Roles[];

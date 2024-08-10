@@ -1,22 +1,34 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity } from 'typeorm';
-import { Category } from './category';
-import { Supplier } from './supplier';
+import { Category } from '../category/category.entity';
+import { Supplier } from '../supplier/supplier.entity';
 
 @Entity()
 export class Product extends BaseEntity {
   @PrimaryGeneratedColumn()
   product_id!: number;
 
-  @Column()
+  @Column('varchar', {
+    nullable: false,
+    name: 'name',
+  })
   name!: string;
 
-  @Column()
+  @Column('varchar', {
+    nullable: false,
+    name: 'name',
+  })
   description!: string;
 
-  @Column('decimal')
+  @Column('decimal', {
+    nullable: false,
+    name: 'price',
+  })
   price!: number;
 
-  @Column()
+  @Column('varchar', {
+    nullable: false,
+    name: 'name',
+  })
   stock_quantity!: number;
 
   @ManyToOne(() => Category, (category) => category.products)

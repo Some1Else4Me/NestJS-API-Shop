@@ -1,21 +1,21 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Order } from './Order';
-import { Product } from './Product';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity } from 'typeorm';
+import { Order } from '../order/order.entity';
+import { Product } from '../product/product.entity';
 
 @Entity()
-export class OrderDetail {
+export class OrderDetail extends BaseEntity {
   @PrimaryGeneratedColumn()
-  order_detail_id: number;
+  order_detail_id!: number;
 
   @ManyToOne(() => Order, (order) => order.orderDetails)
-  order: Order;
+  order!: Order;
 
   @ManyToOne(() => Product, (product) => product)
-  product: Product;
+  product!: Product;
 
   @Column()
-  quantity: number;
+  quantity!: number;
 
   @Column('decimal')
-  price: number;
+  price!: number;
 }

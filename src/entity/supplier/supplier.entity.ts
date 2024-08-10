@@ -1,20 +1,29 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Product } from './Product';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, BaseEntity } from 'typeorm';
+import { Product } from '../product/product.entity';
 
 @Entity()
-export class Supplier {
+export class Supplier extends BaseEntity {
   @PrimaryGeneratedColumn()
-  supplier_id: number;
+  supplier_id!: number;
 
-  @Column()
-  name: string;
+  @Column('varchar', {
+    nullable: false,
+    name: 'name',
+  })
+  name!: string;
 
-  @Column()
-  contact_info: string;
+  @Column('varchar', {
+    nullable: true,
+    name: 'contact_info',
+  })
+  contact_info!: string;
 
-  @Column()
-  address: string;
+  @Column('varchar', {
+    nullable: true,
+    name: 'address',
+  })
+  address!: string;
 
   @OneToMany(() => Product, (product) => product.supplier)
-  products: Product[];
+  products!: Product[];
 }

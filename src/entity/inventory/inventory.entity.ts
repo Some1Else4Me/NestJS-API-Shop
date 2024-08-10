@@ -1,17 +1,23 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Product } from './Product';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity } from 'typeorm';
+import { Product } from '../product/product.entity';
 
 @Entity()
-export class Inventory {
+export class Inventory extends BaseEntity {
   @PrimaryGeneratedColumn()
-  inventory_id: number;
+  inventory_id!: number;
 
   @ManyToOne(() => Product, (product) => product)
-  product: Product;
+  product!: Product;
 
-  @Column()
-  quantity: number;
+  @Column('int', {
+    nullable: false,
+    name: 'quantity',
+  })
+  quantity!: number;
 
-  @Column()
-  last_updated: Date;
+  @Column('date', {
+    nullable: false,
+    name: 'last_updated',
+  })
+  last_updated!: Date;
 }
