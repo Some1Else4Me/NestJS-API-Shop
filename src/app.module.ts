@@ -11,6 +11,7 @@ import { CommonModule, ExceptionsFilter, LoggerMiddleware } from './modules/comm
 import { CountryModule } from './modules/country';
 import { HealthModule } from './modules/health';
 import { InitDbModule } from './modules/init/init.module';
+import { ProductModule } from './modules/product';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { InitDbModule } from './modules/init/init.module';
     HealthModule,
     AuthModule,
     CountryModule,
+    ProductModule,
     InitDbModule,
   ],
   providers: [

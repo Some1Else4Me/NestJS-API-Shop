@@ -5,7 +5,6 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Product } from 'src/entity';
 
-import { ProductResolver } from './resolver';
 import { ProductService } from './services';
 import { ProductController } from './controller';
 
@@ -13,18 +12,8 @@ import { ProductController } from './controller';
  * https://docs.nestjs.com/graphql/quick-start
  */
 @Module({
-  imports: [
-    GraphQLModule.forRootAsync({
-      driver: ApolloDriver,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      useFactory: async (config: ConfigService) => ({
-        ...(await config.get('graphql')),
-      }),
-      inject: [ConfigService],
-    }),
-    TypeOrmModule.forFeature([Product]),
-  ],
-  providers: [ProductResolver, ProductService],
+  imports: [TypeOrmModule.forFeature([Product])],
+  providers: [ProductService],
   controllers: [ProductController],
 })
 export class ProductModule {}
