@@ -7,6 +7,7 @@ import { Product } from 'src/entity';
 
 import { ProductResolver } from './resolver';
 import { ProductService } from './services';
+import { ProductController } from './controller';
 
 /**
  * https://docs.nestjs.com/graphql/quick-start
@@ -24,5 +25,6 @@ import { ProductService } from './services';
     TypeOrmModule.forFeature([Product]),
   ],
   providers: [ProductResolver, ProductService],
+  controllers: [ProductController],
 })
 export class ProductModule {}
