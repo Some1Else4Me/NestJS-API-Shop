@@ -1,6 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity } from 'typeorm';
-import { Category } from '../category/category.entity';
-import { Supplier } from '../supplier/supplier.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, BaseEntity } from 'typeorm';
+import { Transaction } from '../transaction/transaction.entity';
 
 @Entity()
 export class Product extends BaseEntity {
@@ -15,7 +14,7 @@ export class Product extends BaseEntity {
 
   @Column('varchar', {
     nullable: false,
-    name: 'name',
+    name: 'description',
   })
   description!: string;
 
@@ -25,15 +24,12 @@ export class Product extends BaseEntity {
   })
   price!: number;
 
-  @Column('varchar', {
+  @Column('int', {
     nullable: false,
-    name: 'name',
+    name: 'stock_quantity',
   })
   stock_quantity!: number;
 
-  @ManyToOne(() => Category, (category) => category.products)
-  category!: Category;
-
-  @ManyToOne(() => Supplier, (supplier) => supplier.products)
-  supplier!: Supplier;
+  @OneToMany(() => Transaction, (transaction) => transaction.product)
+  transactions!: Transaction[];
 }

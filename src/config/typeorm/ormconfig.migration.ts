@@ -1,5 +1,5 @@
-import { DataSource } from "typeorm";
+import { DataSource } from 'typeorm';
 
-import DataSourceConfigs from "./ormconfig";
+import DataSourceConfigs from './ormconfig';
 
 export default new DataSource(DataSourceConfigs.defaultOptions);

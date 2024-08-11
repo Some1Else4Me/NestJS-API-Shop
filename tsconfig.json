@@ -31,5 +31,5 @@
     "skipLibCheck": true
   },
   "include": ["typings/global.d.ts", "src/**/*", "test/**/*"],
-  "exclude": ["node_modules", "src/migration"]
+  "exclude": ["node_modules", "migrations"]
 }
